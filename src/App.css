@@ -1,0 +1,100 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  height: calc(100vh - 2em);
+}
+
+select > option {
+  color: black;
+}
+
+.create-task {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-task label {
+  flex-grow: 1;
+  padding-right: 1em;
+}
+.create-task input {
+  height: 100%;
+  width: 100%;
+  font-size: 1em;
+  padding: 0.25em;
+}
+.create-task button {
+  outline: none;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+}
+
+.task-board {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.task-board h3 {
+  margin: 0 0 0.25em;
+  text-align: center;
+}
+.task-list {
+  width: 33%;
+  margin-top: 1em;
+}
+.task-list ul {
+  margin: 0;
+  padding: 0.25em;
+  border: 1px dashed gray;
+  height: 100%;
+}
+.task-list li {
+  list-style-type: none;
+  margin: 0;
+  border: 1px solid black;
+  margin-top: 0.25em;
+}
+
+.task-item {
+  margin: 1em;
+  position: relative;
+}
+.task-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.task-status.todo {
+  color: blue;
+}
+.task-status.doing {
+  color: orangered;
+}
+.task-status.done {
+  color: black;
+}
+
+.task-item input.task-edit {
+  width: 50%;
+  margin-right: 0.25em;
+}
+.task-item .btn {
+  padding: 0;
+  margin-right: 4px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.delete {
+  color: red;
+}
