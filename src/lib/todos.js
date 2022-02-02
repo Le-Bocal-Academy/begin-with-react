@@ -4,8 +4,10 @@ export const splitTodosByStatus = (todoList) => {
   const doing = [];
   const done = [];
 
-  for (let i = 0; i < todoList.length; i++) {
-    const item = todoList[i];
+  // @same as:
+  // for (let i = 0; i < todoList.length; i++) {
+  //   const item = todoList[i];
+  for (const item of todoList) {
     switch (item.status) {
       case "todo":
         todo.push(item);
@@ -21,6 +23,6 @@ export const splitTodosByStatus = (todoList) => {
     }
   }
 
-  // return { todo: todo, doing: doing, done: done }
+  // @same as return { todo: todo, doing: doing, done: done }
   return { todo, doing, done }
 };

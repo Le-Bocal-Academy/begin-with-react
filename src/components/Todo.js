@@ -9,11 +9,13 @@ const Todo = (props) => {
   // should I show the input to modify body?
   const [editBody, setEditBody] = useState(false);
 
+  // The power to ask for a new todo status!
   const handleChangeStatus = (newStatus) => {
     setStatus(newStatus);
     props.onChangeStatus(newStatus);
   };
 
+  // The power to ask for the todo to be deleted
   const handleDeleteTodo = () => {
     props.onDeleteTodo()
   };

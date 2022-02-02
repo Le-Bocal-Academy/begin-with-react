@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 
 const CreateTodo = (props) => {
+  // body state control
   const [body, setBody] = useState("");
+  // a function handling the creation of a todo
   const handleCreateTodo = () => {
     if (body) {
       props.onAddTodo({
-        body: body,
+        body,
         createdAt: new Date().toISOString(),
         status: "todo"
       });
+
+      // reset the input to an empty value
       setBody("");
     }
   };
