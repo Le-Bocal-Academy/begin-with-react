@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import CreateTodo from "./components/CreateTodo";
+import Todo from "./components/Todo";
 
 import './App.css';
 
@@ -20,7 +21,9 @@ const App = () => {
 
       <div className="task-list">
         <ul>
-          {todoList.map((todo) => <li key={todo.createdAt}>{todo.body}</li>)}
+          {todoList.map((todo) => <li key={todo.createdAt}>
+            <Todo {...todo} />  
+          </li>)}
         </ul>
       </div>
     </div>
