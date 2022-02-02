@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import ShowIf from "./ShowIf";
 
 const Todo = (props) => {
+  // status state
   const [status, setStatus] = useState(props.status);
+  // should I show the buttons?
   const [showActions, setShowActions] = useState(false);
+  // should I show the input to modify body?
+  const [editBody, setEditBody] = useState(false);
+
   const handleChangeStatus = (newStatus) => {
     setStatus(newStatus);
     props.onChangeStatus(newStatus);
   };
+
   const handleDeleteTodo = () => {
     props.onDeleteTodo()
   };
@@ -19,12 +26,15 @@ const Todo = (props) => {
         <option value="done">Done</option>
       </select>
       <div onMouseEnter={() => setShowActions(true)} onMouseLeave={() => setShowActions(false)}>
-        {showActions ? (
+        <ShowIf condition={showActions}>
           <span className="task-actions">
+            <button className="btn edit" onClick={() => setEditBody(true)}>&#x270E;</button>
             <button className="btn delete" onClick={handleDeleteTodo}>x</button>
           </span>
-        ) : null}
-        {props.body}
+        </ShowIf>
+        <ShowIf condition={editBody} defaultValue={props.body}>
+          <input className="task-edit" type="text" value={props.body} />
+        </ShowIf>
       </div>
       <small>{props.createdAt}</small>
     </div>
