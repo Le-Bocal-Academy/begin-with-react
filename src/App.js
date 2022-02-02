@@ -12,6 +12,10 @@ const App = () => {
     const newList = todoList.concat(todo);
     setTodoList(newList);
   };
+  const handleUpdateToDo = (todo) => {
+    const newList = todoList.map((item) => (todo.createdAt === item.createdAt) ? todo : item);
+    setTodoList(newList);
+  };
 
   return (
     <div className="App">
@@ -22,7 +26,10 @@ const App = () => {
       <div className="task-list">
         <ul>
           {todoList.map((todo) => <li key={todo.createdAt}>
-            <Todo {...todo} />  
+            <Todo {...todo} onChangeStatus={(status) => handleUpdateToDo({
+              ...todo,
+              status
+            })} />  
           </li>)}
         </ul>
       </div>
