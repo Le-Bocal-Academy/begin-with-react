@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import CreateTodo from "./components/CreateTodo";
 import Todo from "./components/Todo";
+import { splitTodosByStatus } from "./lib/todos";
 
 import './App.css';
 
@@ -17,22 +18,30 @@ const App = () => {
     setTodoList(newList);
   };
 
+  const todosByStatus = splitTodosByStatus(todoList); // <= { todo, doing, done: [..........] }
+
   return (
     <div className="App">
       <h1>My awesome Todo List</h1>
 
       <CreateTodo onAddTodo={handleAddToDo} />
 
-      <div className="task-list">
-        <ul>
-          {todoList.map((todo) => <li key={todo.createdAt}>
-            <Todo {...todo} onChangeStatus={(status) => handleUpdateToDo({
-              ...todo,
-              status
-            })} />  
-          </li>)}
-        </ul>
-      </div>
+      <section className="task-board">
+        {Object.entries(todosByStatus).map(([statusName, taskList]) => (
+          <div className="task-list" key={statusName}>
+            <h3>{statusName.slice(0, 1).toUpperCase() + statusName.slice(1)}</h3>
+            <ul>
+              {taskList.map((todo) => <li key={todo.createdAt}>
+                <Todo {...todo} onChangeStatus={(status) => handleUpdateToDo({
+                  ...todo,
+                  status
+                })} />  
+              </li>)}
+            </ul>
+          </div>
+        ))}
+      </section>
+
     </div>
   );
 }

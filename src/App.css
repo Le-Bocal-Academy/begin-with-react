@@ -4,6 +4,7 @@
   align-items: center;
   font-family: sans-serif;
   height: calc(100vh - 2em);
+  padding: 4px;
 }
 
 select > option {
