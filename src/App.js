@@ -17,6 +17,12 @@ const App = () => {
     const newList = todoList.map((item) => (todo.createdAt === item.createdAt) ? todo : item);
     setTodoList(newList);
   };
+  const handleDeleteToDo = (todo) => {
+    const newList = todoList.filter((item) => {
+      return todo.createdAt !== item.createdAt;
+    });
+    setTodoList(newList);
+  };
 
   const todosByStatus = splitTodosByStatus(todoList); // <= { todo, doing, done: [..........] }
 
@@ -35,7 +41,7 @@ const App = () => {
                 <Todo {...todo} onChangeStatus={(status) => handleUpdateToDo({
                   ...todo,
                   status
-                })} />  
+                })} onDeleteTodo={() => handleDeleteToDo(todo)} />  
               </li>)}
             </ul>
           </div>
